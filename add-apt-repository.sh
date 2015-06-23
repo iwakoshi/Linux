@@ -14,10 +14,10 @@ then
 		content=$(wget https://launchpad.net/~`echo "$ppa"`/+archive/ubuntu/ppa -q -O -)
 		versionUbuntu=${content%%)</option>*}
 		versionUbuntu=${versionUbuntu%\">*}
-    versionUbuntu=${versionUbuntu##*\"}
-    echo "Using PPA Ubuntu $versaoUbuntu Version"
+                versionUbuntu=${versionUbuntu##*\"}
+                echo "Using PPA Ubuntu $versionUbuntu Version"
 		echo "" >> /etc/apt/sources.list
-		echo "deb http://ppa.launchpad.net/$ppa_name/ubuntu $versaoUbuntu main" >> /etc/apt/sources.list
+		echo "deb http://ppa.launchpad.net/$ppa_name/ubuntu $versionUbuntu main" >> /etc/apt/sources.list
 		apt-get update >> /dev/null 2> /tmp/${NAME}_apt_add_key.txt
 		key=`cat /tmp/${NAME}_apt_add_key.txt | cut -d":" -f6 | cut -d" " -f3`
 		apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
