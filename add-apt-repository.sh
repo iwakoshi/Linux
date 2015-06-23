@@ -10,14 +10,8 @@ then
 		echo "Utility to add PPA repositories in your debian machine"
 		echo "$0 ppa:user/ppa-name"
 	else
-		ppa=`echo "$ppa_name" | cut -d"/" -f1 -s`
-		content=$(wget https://launchpad.net/~`echo "$ppa"`/+archive/ubuntu/ppa -q -O -)
-		versionUbuntu=${content%%)</option>*}
-		versionUbuntu=${versionUbuntu%\">*}
-                versionUbuntu=${versionUbuntu##*\"}
-                echo "Using PPA Ubuntu $versionUbuntu Version"
-		echo "" >> /etc/apt/sources.list
-		echo "deb http://ppa.launchpad.net/$ppa_name/ubuntu $versionUbuntu main" >> /etc/apt/sources.list
+		echo "#" >> /etc/apt/sources.list
+		echo "deb http://ppa.launchpad.net/$ppa_name/ubuntu utopic main" >> /etc/apt/sources.list
 		apt-get update >> /dev/null 2> /tmp/${NAME}_apt_add_key.txt
 		key=`cat /tmp/${NAME}_apt_add_key.txt | cut -d":" -f6 | cut -d" " -f3`
 		apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
